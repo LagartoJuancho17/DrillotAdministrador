@@ -1,0 +1,29 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+
+# Build and Production
+build/
+dist/
+coverage/
+
+# Misc
+.DS_Store
+.vscode/
+.idea/
+
+# Datos Sensibles y Variables de Entorno
+.env*
+!.env.example
+*.pem
+*.key
+*.cert
+*secret*
+*credentials.json
+
+# Archivos de datos del negocio local
+precios.json
