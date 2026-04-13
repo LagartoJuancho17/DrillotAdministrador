@@ -187,12 +187,13 @@ export default function Orders({ onManageShipping }: OrdersProps) {
       }
 
       if (matchedSize) {
-         const frameType = currentItem.frame_type || 'Madera';
-         const frameKey = frameType === 'Negro' ? 'madera_negra' : 'madera_natural';
-         
-         const priceConfig = (preciosData as any)[matchedSize];
-         if (priceConfig && priceConfig[frameKey]) {
-            currentItem.unit_price = priceConfig[frameKey];
+         const basePrice = (preciosData as any)[matchedSize];
+         if (basePrice) {
+            let finalPrice = basePrice;
+            if (currentItem.frame_type === 'Negro') {
+               finalPrice += (preciosData as any).adicional_marco_negro || 0;
+            }
+            currentItem.unit_price = finalPrice;
          }
       }
     }
@@ -225,7 +226,14 @@ export default function Orders({ onManageShipping }: OrdersProps) {
     try {
       const { data, error } = await supabase
         .from('orders')
-        .select('*, client:clients(*)')
+        .select(`
+          *,
+          client:clients(*),
+          items:order_items(
+            *,
+            product:products(name)
+          )
+        `)
         .order('created_at', { ascending: false });
       
       if (error) throw error;
@@ -235,6 +243,21 @@ export default function Orders({ onManageShipping }: OrdersProps) {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleNewOrderClick = () => {
+    setEditingOrder(null);
+    setNewOrder({
+      client_id: '',
+      payment_method: 'Transferencia',
+      payment_status: 'pendiente',
+      status: 'pendiente',
+      items: []
+    });
+    setClientSearch('');
+    setIsAddingNewClient(false);
+    setNewClientData({ name: '', phone: '', instagram: '' });
+    setIsDialogOpen(true);
   };
 
   const handleEditClick = async (order: Order) => {
@@ -500,11 +523,11 @@ export default function Orders({ onManageShipping }: OrdersProps) {
             <Download className="w-4 h-4 mr-2" />
             Exportar
           </Button>
+          <Button onClick={handleNewOrderClick} className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Plus className="w-4 h-4 mr-2" />
+            Nuevo Pedido
+          </Button>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger render={<Button className="bg-blue-600 hover:bg-blue-700 text-white" />}>
-              <Plus className="w-4 h-4 mr-2" />
-              Nuevo Pedido
-            </DialogTrigger>
             <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>{editingOrder ? `Editar Pedido ${editingOrder.order_number}` : 'Nuevo Pedido'}</DialogTitle>
@@ -803,6 +826,11 @@ export default function Orders({ onManageShipping }: OrdersProps) {
                       >
                         <TableCell>
                           <div className="font-bold text-slate-900">{order.order_number}</div>
+                          {order.items && order.items.length > 0 && (
+                            <div className="text-xs text-slate-500 mt-1 max-w-[200px] truncate" title={order.items.map(i => `${i.quantity}x ${i.product?.name || 'Item'} (${i.size || ''})`).join(', ')}>
+                              {order.items.map((i: any) => `${i.quantity}x ${i.product?.name || 'Item'} (${i.size || ''})`).join(', ')}
+                            </div>
+                          )}
                         </TableCell>
                         <TableCell className="text-slate-600 text-sm">
                           {format(new Date(order.created_at), 'dd MMM, HH:mm', { locale: es })}

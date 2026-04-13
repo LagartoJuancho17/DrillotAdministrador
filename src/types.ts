@@ -49,6 +49,7 @@ export interface Order {
   created_at: string;
   updated_at: string;
   client?: Client;
+  items?: OrderItem[];
 }
 
 export interface OrderItem {
