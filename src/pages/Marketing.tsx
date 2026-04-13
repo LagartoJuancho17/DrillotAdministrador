@@ -207,7 +207,7 @@ export default function Marketing() {
           <p className="text-slate-500">Analiza el rendimiento de tu inversión publicitaria</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger render={<Button className="bg-blue-600 hover:bg-blue-700 text-white" />}>
+          <DialogTrigger render={<Button className="bg-violet-600 hover:bg-violet-700 text-white" />}>
             <Plus className="w-4 h-4 mr-2" />
             Registrar Gasto
           </DialogTrigger>
@@ -265,7 +265,7 @@ export default function Marketing() {
             </div>
             <DialogFooter>
               <Button variant="outline" onClick={() => setIsDialogOpen(false)} disabled={saving}>Cancelar</Button>
-              <Button onClick={handleAddSpend} disabled={saving} className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button onClick={handleAddSpend} disabled={saving} className="bg-violet-600 hover:bg-violet-700 text-white">
                 {saving ? 'Guardando...' : 'Guardar Gasto'}
               </Button>
             </DialogFooter>
@@ -419,7 +419,7 @@ export default function Marketing() {
                         <TableCell>
                           <Badge variant="outline" className={cn(
                             "px-2 py-0.5",
-                            item.type === 'Story' ? "bg-pink-50 text-pink-700 border-pink-100" : "bg-blue-50 text-blue-700 border-blue-100"
+                            item.type === 'Story' ? "bg-pink-50 text-pink-700 border-pink-100" : "bg-violet-50 text-violet-700 border-violet-100"
                           )}>
                             {item.type}
                           </Badge>

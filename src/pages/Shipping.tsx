@@ -204,7 +204,7 @@ export default function Shipping({ initialOrderId, onClearInitialOrder }: Shippi
           <p className="text-slate-500">Registra y sigue los envíos de tus pedidos manualmente</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger render={<Button className="bg-blue-600 hover:bg-blue-700 text-white" />}>
+          <DialogTrigger render={<Button className="bg-violet-600 hover:bg-violet-700 text-white" />}>
             <Plus className="w-4 h-4 mr-2" />
             Registrar Envío
           </DialogTrigger>
@@ -218,11 +218,11 @@ export default function Shipping({ initialOrderId, onClearInitialOrder }: Shippi
                 <input 
                   type="checkbox" 
                   id="is_pickup" 
-                  className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                  className="w-4 h-4 rounded border-slate-300 text-violet-600 focus:ring-violet-500"
                   checked={newShipping.is_pickup}
                   onChange={(e) => setNewShipping({...newShipping, is_pickup: e.target.checked})}
                 />
-                <Label htmlFor="is_pickup" className="font-bold text-blue-700">Servicio de PICKUP (Retiro)</Label>
+                <Label htmlFor="is_pickup" className="font-bold text-violet-700">Servicio de PICKUP (Retiro)</Label>
               </div>
 
               <div className="space-y-2">
@@ -274,7 +274,7 @@ export default function Shipping({ initialOrderId, onClearInitialOrder }: Shippi
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-blue-600 font-bold">
+                  <Label className="text-violet-600 font-bold">
                     Precio de Envío ($)
                   </Label>
                   <Input 
@@ -282,7 +282,7 @@ export default function Shipping({ initialOrderId, onClearInitialOrder }: Shippi
                     placeholder="0.00" 
                     value={newShipping.shipping_cost}
                     onChange={(e) => setNewShipping({...newShipping, shipping_cost: e.target.value})}
-                    className="border-blue-200 bg-blue-50/30"
+                    className="border-violet-200 bg-violet-50/30"
                   />
                 </div>
               </div>
@@ -337,7 +337,7 @@ export default function Shipping({ initialOrderId, onClearInitialOrder }: Shippi
             </div>
             <DialogFooter>
               <Button variant="outline" onClick={() => setIsDialogOpen(false)} disabled={saving}>Cancelar</Button>
-              <Button onClick={handleAddShipping} disabled={saving} className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button onClick={handleAddShipping} disabled={saving} className="bg-violet-600 hover:bg-violet-700 text-white">
                 {saving ? 'Guardando...' : 'Guardar Envío'}
               </Button>
             </DialogFooter>
@@ -390,7 +390,7 @@ export default function Shipping({ initialOrderId, onClearInitialOrder }: Shippi
                       <TableCell>
                         <div className="flex items-center gap-2">
                           {item.is_pickup ? (
-                            <Badge className="bg-blue-100 text-blue-700 border-blue-200">PICKUP</Badge>
+                            <Badge className="bg-violet-100 text-violet-700 border-violet-200">PICKUP</Badge>
                           ) : (
                             <>
                               <Truck className="w-4 h-4 text-slate-400" />
@@ -409,7 +409,7 @@ export default function Shipping({ initialOrderId, onClearInitialOrder }: Shippi
                         <Badge variant="outline" className={cn(
                           "px-2 py-0.5",
                           item.shipping_status === 'entregado' ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
-                          item.shipping_status === 'despachado' ? "bg-blue-50 text-blue-700 border-blue-100" : "bg-slate-50 text-slate-600"
+                          item.shipping_status === 'despachado' ? "bg-violet-50 text-violet-700 border-violet-100" : "bg-slate-50 text-slate-600"
                         )}>
                           {item.shipping_status.replace('_', ' ')}
                         </Badge>

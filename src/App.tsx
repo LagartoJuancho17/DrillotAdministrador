@@ -59,8 +59,8 @@ export default function App() {
   if (loading) {
     return (
       <div className="h-screen w-full flex flex-col items-center justify-center bg-slate-50">
-        <Loader2 className="w-10 h-10 text-blue-600 animate-spin mb-4" />
-        <p className="text-slate-500 font-medium">Cargando FrameFlow...</p>
+        <Loader2 className="w-10 h-10 text-violet-600 animate-spin mb-4" />
+        <p className="text-slate-500 font-medium">Cargando Drillot Admin...</p>
       </div>
     );
   }
@@ -70,12 +70,12 @@ export default function App() {
       <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
         <div className="max-w-md w-full space-y-8 text-center">
           <div className="flex flex-col items-center">
-            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6">
+            <div className="w-16 h-16 bg-violet-100 rounded-2xl flex items-center justify-center text-violet-600 mb-6">
               <SettingsIcon className="w-8 h-8" />
             </div>
             <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Configuración Requerida</h1>
             <p className="text-slate-500 mt-4">
-              Para comenzar a usar FrameFlow, necesitas conectar tu proyecto de Supabase.
+              Para comenzar a usar Drillot Admin, necesitas conectar tu proyecto de Supabase.
             </p>
           </div>
           
@@ -86,7 +86,7 @@ export default function App() {
                 Pasos a seguir:
               </h3>
               <ol className="list-decimal list-inside space-y-3 text-sm text-slate-600">
-                <li>Crea un proyecto en <a href="https://supabase.com" target="_blank" className="text-blue-600 hover:underline">supabase.com</a></li>
+                <li>Crea un proyecto en <a href="https://supabase.com" target="_blank" className="text-violet-600 hover:underline">supabase.com</a></li>
                 <li>Ve a <b>Settings &gt; API</b> y copia la URL y la Anon Key</li>
                 <li>Añade las variables <b>VITE_SUPABASE_URL</b> y <b>VITE_SUPABASE_ANON_KEY</b> en el panel de Secretos de AI Studio</li>
                 <li>Reinicia la aplicación</li>
@@ -94,7 +94,7 @@ export default function App() {
             </div>
             
             <Button 
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+              className="w-full bg-violet-600 hover:bg-violet-700 text-white"
               onClick={() => window.location.reload()}
             >
               Ya lo configuré, reintentar

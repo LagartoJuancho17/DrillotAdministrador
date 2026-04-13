@@ -57,7 +57,7 @@ import {
 import { cn } from '@/lib/utils';
 
 const categoryConfig: Record<ClientCategory, { label: string, color: string }> = {
-  nuevo: { label: 'Nuevo', color: 'bg-blue-50 text-blue-700 border-blue-100' },
+  nuevo: { label: 'Nuevo', color: 'bg-violet-50 text-violet-700 border-violet-100' },
   regular: { label: 'Regular', color: 'bg-emerald-50 text-emerald-700 border-emerald-100' },
   vip: { label: 'VIP', color: 'bg-purple-50 text-purple-700 border-purple-100' },
   mayorista: { label: 'Mayorista', color: 'bg-orange-50 text-orange-700 border-orange-100' },
@@ -189,7 +189,7 @@ export default function Clients() {
           <p className="text-slate-500">Administra tu base de datos de contactos</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger render={<Button className="bg-blue-600 hover:bg-blue-700 text-white" />}>
+          <DialogTrigger render={<Button className="bg-violet-600 hover:bg-violet-700 text-white" />}>
             <UserPlus className="w-4 h-4 mr-2" />
             Nuevo Cliente
           </DialogTrigger>
@@ -263,7 +263,7 @@ export default function Clients() {
             </div>
             <DialogFooter>
               <Button variant="outline" onClick={() => setIsDialogOpen(false)} disabled={saving}>Cancelar</Button>
-              <Button onClick={handleAddClient} disabled={saving} className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button onClick={handleAddClient} disabled={saving} className="bg-violet-600 hover:bg-violet-700 text-white">
                 {saving ? 'Guardando...' : 'Guardar Cliente'}
               </Button>
             </DialogFooter>

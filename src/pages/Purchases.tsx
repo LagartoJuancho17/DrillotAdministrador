@@ -332,13 +332,13 @@ export default function Purchases() {
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsShortcutDialogOpen(false)}>Cancelar</Button>
-                <Button onClick={handleAddShortcut} className="bg-blue-600 text-white">Crear Atajo</Button>
+                <Button onClick={handleAddShortcut} className="bg-violet-600 text-white">Crear Atajo</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
 
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger render={<Button className="bg-blue-600 hover:bg-blue-700 text-white" />}>
+            <DialogTrigger render={<Button className="bg-violet-600 hover:bg-violet-700 text-white" />}>
               <Plus className="w-4 h-4 mr-2" />
               Registrar Compra
             </DialogTrigger>
@@ -363,8 +363,8 @@ export default function Purchases() {
                       variant="outline" 
                       size="sm" 
                       className={cn(
-                        "h-7 px-2 text-[11px] rounded-md border-slate-200 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 transition-all",
-                        newSupply.name === shortcut.name && "bg-blue-50 text-blue-600 border-blue-200"
+                        "h-7 px-2 text-[11px] rounded-md border-slate-200 hover:bg-violet-50 hover:text-violet-600 hover:border-violet-200 transition-all",
+                        newSupply.name === shortcut.name && "bg-violet-50 text-violet-600 border-violet-200"
                       )}
                       onClick={() => setNewSupply({...newSupply, name: shortcut.name})}
                     >
@@ -452,7 +452,7 @@ export default function Purchases() {
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancelar</Button>
-                <Button onClick={handleAddSupply} className="bg-blue-600 hover:bg-blue-700 text-white">Guardar Registro</Button>
+                <Button onClick={handleAddSupply} className="bg-violet-600 hover:bg-violet-700 text-white">Guardar Registro</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
@@ -572,7 +572,7 @@ export default function Purchases() {
                       {items.map((item) => (
                         <TableRow 
                           key={item.id} 
-                          className="hover:bg-blue-50 cursor-pointer transition-colors group"
+                          className="hover:bg-violet-50 cursor-pointer transition-colors group"
                           onClick={() => {
                             setEditingSupply(item);
                             setNewSupply({

@@ -175,25 +175,25 @@ export default function Dashboard() {
   return (
     <div className="space-y-8">
       {/* Profit Card Section */}
-      <Card className="border-none shadow-md bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+      <Card className="border-none shadow-md bg-gradient-to-r from-violet-600 to-violet-900 text-white">
         <CardContent className="pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="space-y-1 text-center md:text-left">
-              <p className="text-blue-100 text-sm font-medium">Ganancia Neta Estimada</p>
+              <p className="text-violet-100 text-sm font-medium">Ganancia Neta Estimada</p>
               <h2 className="text-4xl font-bold">${netProfit.toLocaleString()}</h2>
-              <p className="text-blue-200 text-xs">Ventas - (Insumos + Marketing)</p>
+              <p className="text-violet-200 text-xs">Ventas - (Insumos + Marketing)</p>
             </div>
             <div className="grid grid-cols-3 gap-8 text-center">
               <div>
-                <p className="text-blue-100 text-xs mb-1">Ventas</p>
+                <p className="text-violet-100 text-xs mb-1">Ventas</p>
                 <p className="font-bold">${stats.totalSales.toLocaleString()}</p>
               </div>
               <div>
-                <p className="text-blue-100 text-xs mb-1">Insumos</p>
+                <p className="text-violet-100 text-xs mb-1">Insumos</p>
                 <p className="font-bold text-red-200">-${stats.totalCosts.toLocaleString()}</p>
               </div>
               <div>
-                <p className="text-blue-100 text-xs mb-1">Marketing</p>
+                <p className="text-violet-100 text-xs mb-1">Marketing</p>
                 <p className="font-bold text-red-200">-${stats.totalMarketing.toLocaleString()}</p>
               </div>
             </div>
@@ -206,8 +206,8 @@ export default function Dashboard() {
         <Card className="border-none shadow-sm bg-white">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-sm font-medium text-slate-500">Ventas del Mes</CardTitle>
-            <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center">
-              <DollarSign className="w-4 h-4 text-blue-600" />
+            <div className="w-8 h-8 bg-violet-50 rounded-full flex items-center justify-center">
+              <DollarSign className="w-4 h-4 text-violet-600" />
             </div>
           </CardHeader>
           <CardContent>
@@ -334,8 +334,8 @@ export default function Dashboard() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center shrink-0">
-                <Clock className="w-5 h-5 text-blue-600" />
+              <div className="w-10 h-10 bg-violet-50 rounded-lg flex items-center justify-center shrink-0">
+                <Clock className="w-5 h-5 text-violet-600" />
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium text-slate-900">{stats.pendingOrders} Pedidos pendientes</p>
@@ -370,7 +370,7 @@ export default function Dashboard() {
               <ArrowUpRight className="w-4 h-4 text-slate-300" />
             </div>
 
-            <Button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="w-full mt-4 bg-violet-600 hover:bg-violet-700 text-white">
               Ver todos los pedidos
             </Button>
           </CardContent>

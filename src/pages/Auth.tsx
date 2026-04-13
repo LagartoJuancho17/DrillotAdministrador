@@ -51,10 +51,10 @@ export default function Auth() {
         className="w-full max-w-md"
       >
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl mb-4 shadow-lg shadow-blue-200">
-            F
+          <div className="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl mb-4 shadow-lg shadow-violet-200">
+            DA
           </div>
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">FrameFlow</h1>
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Drillot Admin</h1>
           <p className="text-slate-500 mt-2">Gestión inteligente para tu emprendimiento</p>
         </div>
 
@@ -109,7 +109,7 @@ export default function Auth() {
             <CardFooter>
               <Button 
                 type="submit" 
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white h-11"
+                className="w-full bg-violet-600 hover:bg-violet-700 text-white h-11"
                 disabled={loading}
               >
                 {loading ? (
@@ -127,7 +127,7 @@ export default function Auth() {
 
         <div className="mt-8 text-center">
           <p className="text-xs text-slate-400">
-            © 2026 FrameFlow. Acceso Restringido.
+            © 2026 Drillot Admin. Acceso Restringido.
           </p>
         </div>
       </motion.div>

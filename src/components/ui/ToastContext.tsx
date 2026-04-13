@@ -55,14 +55,14 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
                 "pointer-events-auto flex items-center gap-3 py-3 px-4 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border backdrop-blur-md min-w-[300px]",
                 toast.type === 'success' ? "bg-emerald-50/90 border-emerald-500/20 text-emerald-800" :
                 toast.type === 'error' ? "bg-red-50/90 border-red-500/20 text-red-800" :
-                "bg-blue-50/90 border-blue-500/20 text-blue-800"
+                "bg-violet-50/90 border-violet-500/20 text-violet-800"
               )}
             >
               <div className={cn(
                 "flex items-center justify-center w-8 h-8 rounded-full shadow-inner",
                 toast.type === 'success' ? "bg-emerald-500 text-white" :
                 toast.type === 'error' ? "bg-red-500 text-white" :
-                "bg-blue-500 text-white"
+                "bg-violet-500 text-white"
               )}>
                 {toast.type === 'success' && <CheckCircle2 className="w-5 h-5" />}
                 {toast.type === 'error' && <XCircle className="w-5 h-5" />}
@@ -77,7 +77,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
                   "opacity-50 hover:opacity-100 transition-opacity",
                   toast.type === 'success' ? "text-emerald-800" :
                   toast.type === 'error' ? "text-red-800" :
-                  "text-blue-800"
+                  "text-violet-800"
                 )}
               >
                 <X className="w-4 h-4" />

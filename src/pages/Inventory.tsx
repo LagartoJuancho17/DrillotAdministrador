@@ -364,7 +364,7 @@ export default function Inventory() {
           <p className="text-slate-500">Monitorea y ajusta los niveles de stock de tus productos</p>
         </div>
         <div className="flex gap-2">
-          <Button onClick={() => setIsAddDialogOpen(true)} className="bg-blue-600 hover:bg-blue-700 text-white">
+          <Button onClick={() => setIsAddDialogOpen(true)} className="bg-violet-600 hover:bg-violet-700 text-white">
             <Plus className="w-4 h-4 mr-2" />
             Nuevo Producto
           </Button>
@@ -379,7 +379,7 @@ export default function Inventory() {
         <Card className="border-none shadow-sm bg-white">
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
+              <div className="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center text-violet-600">
                 <Package className="w-6 h-6" />
               </div>
               <div>
@@ -540,7 +540,7 @@ export default function Inventory() {
           <Card className="border-none shadow-sm bg-white">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
-                <History className="w-4 h-4 text-blue-600" />
+                <History className="w-4 h-4 text-violet-600" />
                 Compras Recientes
               </CardTitle>
               <CardDescription className="text-xs">Insumos que alimentan el stock</CardDescription>
@@ -565,7 +565,7 @@ export default function Inventory() {
                 )}
                 <Button 
                   variant="ghost" 
-                  className="w-full text-xs text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                  className="w-full text-xs text-violet-600 hover:text-violet-700 hover:bg-violet-50"
                   onClick={() => window.dispatchEvent(new CustomEvent('changeTab', { detail: 'purchases' }))}
                 >
                   Ver todas las compras
@@ -574,7 +574,7 @@ export default function Inventory() {
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-sm bg-blue-600 text-white">
+          <Card className="border-none shadow-sm bg-violet-600 text-white">
             <CardContent className="pt-6">
               <div className="space-y-4">
                 <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -582,14 +582,14 @@ export default function Inventory() {
                 </div>
                 <div>
                   <h3 className="font-bold">Sincronización Activa</h3>
-                  <p className="text-xs text-blue-100 mt-1 leading-relaxed">
+                  <p className="text-xs text-violet-100 mt-1 leading-relaxed">
                     Tus compras de insumos se vinculan automáticamente con los productos del catálogo que tengan el mismo nombre.
                   </p>
                 </div>
                 <Button 
                   variant="secondary" 
                   size="sm" 
-                  className="w-full bg-white text-blue-600 hover:bg-blue-50 border-none"
+                  className="w-full bg-white text-violet-600 hover:bg-violet-50 border-none"
                   onClick={handleSync}
                   disabled={loading}
                 >
@@ -746,7 +746,7 @@ export default function Inventory() {
             }}>Cancelar</Button>
             <Button 
               onClick={handleSaveProduct} 
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-violet-600 hover:bg-violet-700 text-white"
               disabled={saving}
             >
               {saving ? 'Guardando...' : editingProduct ? 'Actualizar Producto' : 'Guardar Producto'}

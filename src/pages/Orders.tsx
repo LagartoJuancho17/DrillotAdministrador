@@ -64,7 +64,7 @@ import preciosData from '@/precios.json';
 
 const statusConfig: Record<OrderStatus, { label: string, color: string, icon: any }> = {
   pendiente: { label: 'Pendiente', color: 'bg-yellow-100 text-yellow-700 border-yellow-200', icon: Clock },
-  confirmado: { label: 'Confirmado', color: 'bg-blue-100 text-blue-700 border-blue-200', icon: CheckCircle2 },
+  confirmado: { label: 'Confirmado', color: 'bg-violet-100 text-violet-700 border-violet-200', icon: CheckCircle2 },
   en_preparacion: { label: 'En Preparación', color: 'bg-purple-100 text-purple-700 border-purple-200', icon: Clock },
   en_camino: { label: 'En Camino', color: 'bg-orange-100 text-orange-700 border-orange-200', icon: Truck },
   entregado: { label: 'Entregado', color: 'bg-emerald-100 text-emerald-700 border-emerald-200', icon: CheckCircle2 },
@@ -523,7 +523,7 @@ export default function Orders({ onManageShipping }: OrdersProps) {
             <Download className="w-4 h-4 mr-2" />
             Exportar
           </Button>
-          <Button onClick={handleNewOrderClick} className="bg-blue-600 hover:bg-blue-700 text-white">
+          <Button onClick={handleNewOrderClick} className="bg-violet-600 hover:bg-violet-700 text-white">
             <Plus className="w-4 h-4 mr-2" />
             Nuevo Pedido
           </Button>
@@ -541,7 +541,7 @@ export default function Orders({ onManageShipping }: OrdersProps) {
                       type="button" 
                       variant="ghost" 
                       size="sm" 
-                      className="text-xs h-6 text-blue-600 hover:text-blue-800"
+                      className="text-xs h-6 text-violet-600 hover:text-violet-800"
                       onClick={() => setIsAddingNewClient(!isAddingNewClient)}
                     >
                       {isAddingNewClient ? 'Cancelar Nuevo' : '+ Nuevo Cliente'}
@@ -549,7 +549,7 @@ export default function Orders({ onManageShipping }: OrdersProps) {
                   </div>
                   
                   {isAddingNewClient ? (
-                    <div className="p-3 border border-blue-100 bg-blue-50/50 rounded-lg space-y-3">
+                    <div className="p-3 border border-violet-100 bg-violet-50/50 rounded-lg space-y-3">
                       <Input 
                         placeholder="Nombre y Apellido *" 
                         value={newClientData.name} 
@@ -573,7 +573,7 @@ export default function Orders({ onManageShipping }: OrdersProps) {
                       <Button 
                         type="button" 
                         size="sm" 
-                        className="w-full h-8 bg-blue-600 hover:bg-blue-700" 
+                        className="w-full h-8 bg-violet-600 hover:bg-violet-700" 
                         onClick={handleQuickAddClient}
                         disabled={!newClientData.name.trim()}
                       >
@@ -761,7 +761,7 @@ export default function Orders({ onManageShipping }: OrdersProps) {
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancelar</Button>
-                <Button onClick={handleAddOrder} className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Button onClick={handleAddOrder} className="bg-violet-600 hover:bg-violet-700 text-white">
                   {editingOrder ? 'Actualizar Pedido' : 'Guardar Pedido'}
                 </Button>
               </DialogFooter>
@@ -856,7 +856,7 @@ export default function Orders({ onManageShipping }: OrdersProps) {
                           <Badge className={cn(
                             "rounded-full px-2 py-0.5 text-[10px] uppercase tracking-wider",
                             order.payment_status === 'pagado' ? "bg-emerald-100 text-emerald-700" : 
-                            order.payment_status === 'parcial' ? "bg-blue-100 text-blue-700" : "bg-slate-100 text-slate-600"
+                            order.payment_status === 'parcial' ? "bg-violet-100 text-violet-700" : "bg-slate-100 text-slate-600"
                           )}>
                             {order.payment_status}
                           </Badge>
@@ -968,7 +968,7 @@ export default function Orders({ onManageShipping }: OrdersProps) {
             <Button 
               onClick={handleUpdateStatus} 
               disabled={isUpdatingStatus}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-violet-600 hover:bg-violet-700 text-white"
             >
               {isUpdatingStatus ? 'Actualizando...' : 'Actualizar Estado'}
             </Button>

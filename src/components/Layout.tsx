@@ -81,10 +81,10 @@ export default function Layout({ children, activeTab, setActiveTab, user, onLogo
                 exit={{ opacity: 0 }}
                 className="flex items-center gap-2"
               >
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
-                  F
+                <div className="w-8 h-8 bg-violet-600 rounded-lg flex items-center justify-center text-white font-bold">
+                  DA
                 </div>
-                <span className="font-bold text-xl tracking-tight text-slate-900">FrameFlow</span>
+                <span className="font-bold text-xl tracking-tight text-slate-900">Drillot Admin</span>
               </motion.div>
             ) : (
               <motion.div 
@@ -92,9 +92,9 @@ export default function Layout({ children, activeTab, setActiveTab, user, onLogo
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold mx-auto"
+                className="w-8 h-8 bg-violet-600 rounded-lg flex items-center justify-center text-white font-bold mx-auto"
               >
-                F
+                DA
               </motion.div>
             )}
           </AnimatePresence>
@@ -112,13 +112,13 @@ export default function Layout({ children, activeTab, setActiveTab, user, onLogo
                 className={cn(
                   "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors group",
                   activeTab === item.id 
-                    ? "bg-blue-50 text-blue-700 font-medium" 
+                    ? "bg-violet-50 text-violet-700 font-medium" 
                     : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
                 )}
               >
                 <item.icon className={cn(
                   "w-5 h-5 transition-colors",
-                  activeTab === item.id ? "text-blue-600" : "text-slate-400 group-hover:text-slate-600"
+                  activeTab === item.id ? "text-violet-600" : "text-slate-400 group-hover:text-slate-600"
                 )} />
                 {isSidebarOpen && (
                   <motion.span
