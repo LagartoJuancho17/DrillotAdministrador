@@ -105,26 +105,29 @@ export default function Clients() {
   const handleAddClient = async () => {
     setSaving(true);
     try {
-      // Get last client number to increment
-      const { data: lastClients, error: fetchError } = await supabase
+      // Fetch all client numbers to find the real numeric maximum
+      const { data: allClients, error: fetchError } = await supabase
         .from('clients')
-        .select('client_number')
-        .order('client_number', { ascending: false })
-        .limit(1);
+        .select('client_number');
 
       if (fetchError) {
-        console.error('Error fetching last client number:', fetchError);
+        console.error('Error fetching client numbers:', fetchError);
       }
 
-      let nextNumber = 1;
-      if (lastClients && lastClients.length > 0 && lastClients[0].client_number) {
-        // Extract number from C-XXXXX format
-        const match = lastClients[0].client_number.match(/\d+/);
-        if (match) {
-          nextNumber = parseInt(match[0]) + 1;
+      let maxNumber = 0;
+      if (allClients && allClients.length > 0) {
+        for (const c of allClients) {
+          if (c.client_number) {
+            const match = c.client_number.match(/\d+/);
+            if (match) {
+              const num = parseInt(match[0], 10);
+              if (num > maxNumber) maxNumber = num;
+            }
+          }
         }
       }
 
+      const nextNumber = maxNumber + 1;
       const clientNumber = `C-${nextNumber.toString().padStart(5, '0')}`;
 
       const { error: insertError } = await supabase
