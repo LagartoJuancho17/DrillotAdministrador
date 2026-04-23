@@ -155,6 +155,20 @@ export default function Shipping({ initialOrderId, onClearInitialOrder }: Shippi
         throw error;
       }
       
+      if (finalCost > 0) {
+        const orderNumber = orders.find(o => o.id === newShipping.order_id)?.order_number || 'Desconocido';
+        const providerName = newShipping.is_pickup ? 'PICKUP' : newShipping.provider;
+        
+        await supabase.from('supplies').insert([{
+          name: `Envío Pedido #${orderNumber} (${providerName})`,
+          quantity: 1,
+          unit: 'envío',
+          unit_cost: finalCost,
+          total_cost: finalCost,
+          purchase_date: new Date().toISOString().split('T')[0]
+        }]);
+      }
+
       console.log('Envío guardado exitosamente');
       setIsDialogOpen(false);
       setNewShipping({
@@ -184,8 +198,19 @@ export default function Shipping({ initialOrderId, onClearInitialOrder }: Shippi
   const confirmDelete = async () => {
     if (!shippingToDelete) return;
     try {
+      const shippingItem = shippingList.find(s => s.id === shippingToDelete);
+
       const { error } = await supabase.from('shipping_info').delete().eq('id', shippingToDelete);
       if (error) throw error;
+
+      if (shippingItem && shippingItem.cost > 0) {
+        const orderNumber = shippingItem.order?.order_number || 'Desconocido';
+        const providerName = shippingItem.is_pickup ? 'PICKUP' : shippingItem.provider;
+        const supplyName = `Envío Pedido #${orderNumber} (${providerName})`;
+        
+        await supabase.from('supplies').delete().eq('name', supplyName);
+      }
+
       fetchShipping();
     } catch (error) {
       console.error('Error deleting shipping:', error);

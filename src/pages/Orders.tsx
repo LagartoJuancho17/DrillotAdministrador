@@ -213,7 +213,22 @@ export default function Orders({ onManageShipping }: OrdersProps) {
 
   const fetchProducts = async () => {
     const { data } = await supabase.from('products').select('*').eq('active', true).order('name');
-    setProducts(data || []);
+    
+    // Filtrar para mostrar solo los marcos/cuadros en el dropdown
+    const marcosOnly = (data || []).filter((p: Product) => {
+      const name = p.name.toLowerCase();
+      const isMarco = name.includes('marco') || name.includes('cuadro');
+      const isExplicitMarcoCat = p.category === 'marco' && 
+        !name.includes('lamina') && 
+        !name.includes('lámina') && 
+        !name.includes('acrilico') && 
+        !name.includes('acrílico') && 
+        !name.includes('barniz');
+        
+      return isMarco || isExplicitMarcoCat;
+    });
+    
+    setProducts(marcosOnly);
   };
 
   const fetchClients = async () => {

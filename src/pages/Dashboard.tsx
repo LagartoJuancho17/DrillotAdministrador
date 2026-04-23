@@ -50,6 +50,7 @@ export default function Dashboard() {
     pendingOrders: 0,
     shippingCount: 0,
     totalCosts: 0,
+    totalShippingCosts: 0,
     totalMarketing: 0
   });
   const [loading, setLoading] = useState(true);
@@ -75,8 +76,17 @@ export default function Dashboard() {
       const lowStockCount = allProds?.filter(p => p.stock_actual < p.stock_minimo).length || 0;
 
       // Fetch Supplies (Costs)
-      const { data: supplies } = await supabase.from('supplies').select('total_cost, purchase_date');
-      const totalCosts = supplies?.reduce((acc, curr) => acc + Number(curr.total_cost), 0) || 0;
+      const { data: supplies } = await supabase.from('supplies').select('total_cost, purchase_date, name');
+      let totalCosts = 0;
+      let totalShippingCosts = 0;
+      
+      supplies?.forEach((s: any) => {
+        if (s.name && s.name.startsWith('Envío Pedido')) {
+          totalShippingCosts += Number(s.total_cost);
+        } else {
+          totalCosts += Number(s.total_cost);
+        }
+      });
 
       // Fetch Marketing (Ad Spend)
       const { data: adSpend } = await supabase.from('ad_spend').select('amount, date');
@@ -88,14 +98,19 @@ export default function Dashboard() {
         adSpend: adSpend || []
       });
 
+      // Fetch Active Shipping
+      const { data: activeShipping } = await supabase.from('shipping_info').select('id').in('shipping_status', ['en_preparacion', 'despachado', 'en_transito']);
+      const shippingCount = activeShipping?.length || 0;
+
       setStats({
         totalSales,
         ordersCount,
         clientsCount: clientsCount || 0,
         lowStockCount: lowStockCount || 0,
         pendingOrders,
-        shippingCount: 0, // Placeholder
+        shippingCount,
         totalCosts,
+        totalShippingCosts,
         totalMarketing
       });
     } catch (error) {
@@ -170,7 +185,7 @@ export default function Dashboard() {
     return Object.values(buckets);
   }, [chartFilter, rawData]);
 
-  const netProfit = stats.totalSales - stats.totalCosts - stats.totalMarketing;
+  const netProfit = stats.totalSales - stats.totalCosts - stats.totalShippingCosts - stats.totalMarketing;
 
   return (
     <div className="space-y-8">
@@ -181,9 +196,9 @@ export default function Dashboard() {
             <div className="space-y-1 text-center md:text-left">
               <p className="text-violet-100 text-sm font-medium">Ganancia Neta Estimada</p>
               <h2 className="text-4xl font-bold">${netProfit.toLocaleString()}</h2>
-              <p className="text-violet-200 text-xs">Ventas - (Insumos + Marketing)</p>
+              <p className="text-violet-200 text-xs">Ventas - (Insumos + Envíos + Marketing)</p>
             </div>
-            <div className="grid grid-cols-3 gap-8 text-center">
+            <div className="grid grid-cols-4 gap-4 text-center">
               <div>
                 <p className="text-violet-100 text-xs mb-1">Ventas</p>
                 <p className="font-bold">${stats.totalSales.toLocaleString()}</p>
@@ -191,6 +206,10 @@ export default function Dashboard() {
               <div>
                 <p className="text-violet-100 text-xs mb-1">Insumos</p>
                 <p className="font-bold text-red-200">-${stats.totalCosts.toLocaleString()}</p>
+              </div>
+              <div>
+                <p className="text-violet-100 text-xs mb-1">Envíos</p>
+                <p className="font-bold text-red-200">-${stats.totalShippingCosts.toLocaleString()}</p>
               </div>
               <div>
                 <p className="text-violet-100 text-xs mb-1">Marketing</p>
@@ -272,7 +291,7 @@ export default function Dashboard() {
           <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 gap-4">
             <div>
               <CardTitle className="text-lg font-semibold text-slate-800">Evolución de Ganancias Netas</CardTitle>
-              <CardDescription>Ventas menos costos e inversión en MKT</CardDescription>
+              <CardDescription>Ventas menos costos, envíos e inversión en MKT</CardDescription>
             </div>
             <Select value={chartFilter} onValueChange={(v: any) => setChartFilter(v)}>
               <SelectTrigger className="w-32 bg-slate-50 border-slate-200">

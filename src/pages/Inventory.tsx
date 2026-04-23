@@ -263,7 +263,22 @@ export default function Inventory() {
         .order('stock_actual', { ascending: true });
       
       if (error) throw error;
-      setProducts(data || []);
+      
+      // Filtrar para mostrar solo los marcos/cuadros
+      const marcosOnly = (data || []).filter((p: Product) => {
+        const name = p.name.toLowerCase();
+        const isMarco = name.includes('marco') || name.includes('cuadro');
+        const isExplicitMarcoCat = p.category === 'marco' && 
+          !name.includes('lamina') && 
+          !name.includes('lámina') && 
+          !name.includes('acrilico') && 
+          !name.includes('acrílico') && 
+          !name.includes('barniz');
+          
+        return isMarco || isExplicitMarcoCat;
+      });
+      
+      setProducts(marcosOnly);
     } catch (error) {
       console.error('Error fetching products for inventory:', error);
       // Fallback mock data if supabase is not configured
@@ -280,22 +295,6 @@ export default function Inventory() {
           wholesale_price: 1800,
           stock_actual: 15,
           stock_minimo: 5,
-          active: true,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        },
-        {
-          id: '2',
-          name: 'Lámina Abstracta #01',
-          sku: 'L-ABS-01',
-          category: 'lamina',
-          description: 'Lámina impresa en papel mate 200g',
-          image_url: null,
-          cost_price: 500,
-          sale_price: 1200,
-          wholesale_price: 800,
-          stock_actual: 3,
-          stock_minimo: 10,
           active: true,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
